@@ -19,3 +19,11 @@ different app), it checks if that app's process is running. If not, it commands 
 Zygote process to fork a new Linux process for that app.
 5. Delivery: Finally, the ATMS sends a Binder transaction down to the target app's ActivityThread, 
 triggering onCreate() and handing it your Intent payload.
+
+## What this example includes?
+
+- Explicit Intent
+- Implicit Intent
+- Activity Result API
+- View binding
+- Parcelize
