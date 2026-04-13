@@ -1,10 +1,14 @@
 package com.thisisyusub.intentexample
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock
+import android.provider.CalendarContract
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.thisisyusub.intentexample.databinding.ActivityMainBinding
@@ -45,10 +49,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnContactSupport.setOnClickListener {
-            applicationContext.sendEmail(
-                email = "kanan.yusub@gmail.com",
-                subject = "Message from the zero-to-end-android",
-                body = "Hello World!",
+//            applicationContext.sendEmail(
+//                email = "kanan.yusub@gmail.com",
+//                subject = "Message from the zero-to-end-android",
+//                body = "Hello World!",
+//            )
+
+//            val intent = Intent(Intent.ACTION_SEND)
+//            val chooser = Intent.createChooser(intent, "Choose Mail App")
+//
+//            if(chooser.resolveActivity(packageManager) != null) {
+//                startActivity(chooser)
+//            }
+
+            //    createAlarm("DUR", 5, 0)
+
+            addEvent(
+                title = "Meeting with Team",
+                location = "Google Meet",
+                begin = System.currentTimeMillis(),
+                end = System.currentTimeMillis() + 60 * 60 * 1000,
             )
         }
 
@@ -56,4 +76,29 @@ class MainActivity : AppCompatActivity() {
             pickImageLauncher.launch("image/*")
         }
     }
+
+    fun createAlarm(message: String, hour: Int, minutes: Int) {
+        val intent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
+            putExtra(AlarmClock.EXTRA_MESSAGE, message)
+            putExtra(AlarmClock.EXTRA_HOUR, hour)
+            putExtra(AlarmClock.EXTRA_MINUTES, minutes)
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+    }
+
+    fun addEvent(title: String, location: String, begin: Long, end: Long) {
+        val intent = Intent(Intent.ACTION_INSERT).apply {
+            data = CalendarContract.Events.CONTENT_URI
+            putExtra(CalendarContract.Events.TITLE, title)
+            putExtra(CalendarContract.Events.EVENT_LOCATION, location)
+            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
+            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end)
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+    }
 }
+

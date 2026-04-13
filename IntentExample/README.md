@@ -27,6 +27,7 @@ triggering onCreate() and handing it your Intent payload.
 - Activity Result API
 - View binding
 - Parcelize
+- Intent Chooser
 
 ## Documentation
 https://developer.android.com/guide/components/intents-filters
