@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="32dp"
+        android:background="#E0E0E0"
+        android:contentDescription="User Avatar"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/btnViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="View Profile (Explicit Intent)" />
+
+    <Button
+        android:id="@+id/btnContactSupport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Contact Support (Implicit Intent)" />
+
+    <Button
+        android:id="@+id/btnChangeAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Avatar (Activity Result)" />
+</LinearLayout>
